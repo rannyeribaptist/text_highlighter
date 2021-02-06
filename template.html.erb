@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Text highlighter - result</title>
+
+    <style media="screen">
+      body {
+        text-align: center;
+        padding: 5%;
+        font-family: monospace;
+        background-color: #f1f0e8;
+        font-size: large;
+        line-height: 1.4rem;
+      }
+
+      h1 {
+        margin: 20px 0 60px 0;
+      }
+
+      .tooltip_box {
+        position: relative;
+        display: inline-block;
+        border-radius: 5px;
+        padding: 0 5px;
+      }
+
+      .tooltip_box text {
+        visibility: hidden;
+        width: 120px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .tooltip_box text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+      }
+
+      .tooltip_box:hover {
+        background-color: #c4dcc58c;
+      }
+
+      .tooltip_box:hover text {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1>Result of TextHighlight app</h1>
+
+    <%= @html %>
+  </body>
+</html>

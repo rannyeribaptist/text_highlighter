@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'erb'
 
 content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consectetur malesuada velit, sit amet porta magna maximus nec. Aliquam aliquet tincidunt enim vel rutrum. Ut augue lorem, rutrum et turpis in, molestie mollis nisi. Ut dapibus erat eget felis pulvinar, ac vestibulum augue bibendum. Quisque sagittis magna nisi. Sed aliquam porttitor fermentum. Nulla consequat justo eu nulla sollicitudin auctor. Sed porta enim non diam mollis, a ullamcorper dolor molestie. Nam eu ex non nisl viverra hendrerit. Donec ante augue, eleifend vel eleifend quis, laoreet volutpat ipsum. Integer viverra aliquam nulla, ac rutrum dui sodales nec.
 
@@ -42,21 +43,30 @@ class TextHighlight
       @words[end_word] = close_highlight(@words[end_word])
     end
 
-    return @words.join(' ')
+    @html = '<p>' + @words.join(' ') + '</p>'
+
+    template = File.read('./template.html.erb')
+    result = ERB.new(template).result(binding)
+
+    File.open('result.html', 'w+') do |f|
+      f.write result
+    end
+
+    return 'All set! You can open the generated HTML file to see the result :D'
   end
 
   private
 
     def set_html(text)
-      return '<p>' + text.gsub("\n\n", '</p><p>') + '</p>'
+      return text.gsub("\n\n", '</p><p>')
     end
 
     def open_highlight(text, color, word)
-      return '<div class="tooltip_box" style="color: #' + color + '"><span>' + text + '</span>' + word
+      return '<span class="tooltip_box" style="color: #' + color + '"><text>' + text + '</text>' + word
     end
 
     def close_highlight(word)
-      return word + '</div>'
+      return word + '</span>'
     end
 
     def create_uniq_colors()
