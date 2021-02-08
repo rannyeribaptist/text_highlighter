@@ -20,26 +20,20 @@
 
       .tooltip_box {
         position: relative;
-        display: inline-block;
         border-radius: 5px;
         padding: 0 5px;
       }
 
       .tooltip_box text {
-        visibility: hidden;
-        width: 120px;
+        display: none;
+        min-width: 120px;
         background-color: #555;
         color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px 0;
+        border-radius: 5px;
+        padding: 5px;
         position: absolute;
-        z-index: 1;
         bottom: 125%;
-        left: 50%;
-        margin-left: -60px;
-        opacity: 0;
-        transition: opacity 0.3s;
+        left: 0;
       }
 
       .tooltip_box text::after {
@@ -54,12 +48,15 @@
       }
 
       .tooltip_box:hover {
-        background-color: #c4dcc58c;
+        background-color: #ccff00;
       }
 
       .tooltip_box:hover text {
-        visibility: visible;
-        opacity: 1;
+        display: block;
+      }
+
+      p:hover {
+        backgorund-color: red;
       }
     </style>
 

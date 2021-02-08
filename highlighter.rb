@@ -26,10 +26,10 @@ highlights = [{
 }]
 
 class TextHighlight
-  def initialize(text, highlights)
+  def initialize text, highlights
     @html = set_html(text)
     @words = @html.split(' ')
-    @highlights = highlights
+    @highlights = highlights.sort_by{|h|h[:start_word]}
   end
 
   def apply
